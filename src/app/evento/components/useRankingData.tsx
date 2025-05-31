@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -38,7 +37,7 @@ export const useRankingData = (): RankingData | null => {
 
     // Seleciona 2 participantes aleatórios dessa lista
     const fakeParticipants: RankingItem[] = [];
-    let namesPool = [...possibleNames];
+    const namesPool = [...possibleNames]; // Changed 'let' to 'const' here
     while (fakeParticipants.length < 2 && namesPool.length > 0) {
       const randomIndex = getRandomInt(0, namesPool.length - 1);
       fakeParticipants.push({
@@ -48,7 +47,7 @@ export const useRankingData = (): RankingData | null => {
       namesPool.splice(randomIndex, 1);
     }
 
-    // Gera o score do usuário atual, garantindo coherência (ex: entre 800 e 1000)
+    // Gera o score do usuário atual, garantindo coerência (ex: entre 800 e 1000)
     const currentUserScore = getRandomInt(800, 1000);
     const currentUser: RankingItem = {
       name: currentUsername,
